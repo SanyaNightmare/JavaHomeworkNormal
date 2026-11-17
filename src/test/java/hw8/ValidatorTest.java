@@ -13,10 +13,14 @@ class ValidatorTest {
 
     static class Parent {
         @NotNull(message = "id null")
-        private String id = "1";
+        private String id;
 
         @NotNull
         private static String staticIgnored = null;
+
+        Parent(String id) {
+            this.id = id;
+        }
     }
 
     static class Person extends Parent {
@@ -31,7 +35,7 @@ class ValidatorTest {
         private Integer age;
 
         Person(String id, String name, String email, Integer age) {
-            this.id = id;
+            super(id);
             this.name = name;
             this.email = email;
             this.age = age;
